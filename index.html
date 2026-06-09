@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Study Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>AI Study Planner</h1>
+    <p class="subtitle">Build your study schedule & generate flashcards with AI</p>
+  </header>
+
+  <main>
+    <!-- Tab Nav -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('planner')">📅 Study Planner</button>
+      <button class="tab" onclick="switchTab('flashcards')">🃏 Flashcard Generator</button>
+    </div>
+
+    <!-- Study Planner Tab -->
+    <section id="planner" class="tab-content active">
+      <div class="card">
+        <h2>Your Courses & Exam Dates</h2>
+        <div id="courses-list">
+          <div class="course-entry">
+            <input type="text" placeholder="Course name (e.g. CSC 300)" class="course-name" />
+            <input type="date" class="exam-date" />
+            <select class="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <button class="btn-remove" onclick="removeCourse(this)">✕</button>
+          </div>
+        </div>
+        <button class="btn-secondary" onclick="addCourse()">+ Add Course</button>
+      </div>
+
+      <div class="card">
+        <h2>Your Availability</h2>
+        <label>How many hours can you study per day?</label>
+        <input type="number" id="hours-per-day" min="1" max="12" value="3" />
+      </div>
+
+      <button class="btn-primary" onclick="generateSchedule()">Generate My Study Schedule ✨</button>
+
+      <div id="schedule-output" class="output-card hidden">
+        <h2>Your Week-by-Week Schedule</h2>
+        <div id="schedule-content"></div>
+      </div>
+    </section>
+
+    <!-- Flashcard Tab -->
+    <section id="flashcards" class="tab-content">
+      <div class="card">
+        <h2>Paste Your Notes</h2>
+        <input type="text" id="flashcard-subject" placeholder="Subject (e.g. Data Structures)" />
+        <textarea id="notes-input" placeholder="Paste your notes here..."></textarea>
+        <button class="btn-primary" onclick="generateFlashcards()">Generate Flashcards ✨</button>
+      </div>
+
+      <div id="flashcard-output" class="hidden">
+        <h2>Your Flashcards</h2>
+        <div id="flashcard-controls">
+          <button class="btn-secondary" onclick="prevCard()">← Prev</button>
+          <span id="card-counter">1 / 1</span>
+          <button class="btn-secondary" onclick="nextCard()">Next →</button>
+        </div>
+        <div id="flashcard-display" class="flashcard" onclick="flipCard()">
+          <div class="flashcard-inner">
+            <div class="flashcard-front"><p id="card-question"></p></div>
+            <div class="flashcard-back"><p id="card-answer"></p></div>
+          </div>
+        </div>
+        <p class="flip-hint">Click card to flip</p>
+        <div id="all-cards-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="loading" class="loading hidden">
+    <div class="spinner"></div>
+    <p id="loading-msg">Thinking...</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "ai-study-planner",
+  "version": "2.0.0",
+  "description": "AI-powered study planner and flashcard generator built with the Anthropic API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "node-fetch": "^2.6.9"
+  }
+}
